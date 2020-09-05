@@ -1,2 +1,9 @@
-# HIMediaServer
+# HIMediaServer 交流QQ
 HIMediaServer是流媒体集群，支持RTMP/HLS//GB28181，高效、稳定、易用，简单而快乐
+
+# GB28181：
+rtmp://ip/sip用户名/通道
+http://IP:9996/live/sip用户名通道.m3u8
+rtmp://106.52.79.133/34020000001320000008/0
+rtmp://106.52.79.133/34020000002000000008/0
+http://106.52.79.133:9996/live/340200000020000000080.m3u8

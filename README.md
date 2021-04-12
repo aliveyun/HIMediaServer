@@ -33,17 +33,18 @@ rtmp://127.0.0.1/live/livestream
     流，在所有协议里保存都是裸流。
 
 
-                                                                   重要概念
+                                                               重要概念                      
 一、StreamPath
 拉流时需要填写 StreamPath ，这个 StreamPath 就是房间的唯一标识。举例：
 
 FFmpeg 推流时 rtmp://127.0.0.1/live/livestream ，其中 live/livestream 就是 StreamPath
-
-用 hdl 拉流即： http://127.0.0.1/live/live/livestream.flv
-用hls拉流即：   http://127.0.0.1/live/live/livestream.m3u8
-用webrtc拉流：  webrtc://127.0.0.1/live/livestream
-用RTMP拉流：    rtmp://127.0.0.1/live/livestream
-用RTSP拉流：    rtsp://127.0.0.1:554/live/livestream
+```
+用 hdl 拉流即： http://127.0.0.1/live/live/livestream.flv 
+用hls拉流即：   http://127.0.0.1/live/live/livestream.m3u8 
+用webrtc拉流：  webrtc://127.0.0.1/live/livestream 
+用RTMP拉流：    rtmp://127.0.0.1/live/livestream 
+用RTSP拉流：    rtsp://127.0.0.1:554/live/livestream 
+```
 如果用 OBS 推流，地址填写 rtmp://127.0.0.1/live ，流密钥 livestream ，最终也是一样。
 在 rtmp 协议中， live 称为 app名称， livestream 称为流名称
 在 flash 中播放 rtmp 流，需要先使用 NetConnection 连接 rtmp://127.0.0.1/live ，然后再使用 NetStream 的 Play("livestream") 来进行播放

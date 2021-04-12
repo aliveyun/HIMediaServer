@@ -7,7 +7,7 @@
 HLS支持播放广告
 关键帧缓存；
 秒开画面；
-
+```
 GB28181：
 rtmp://ip/sip用户名/通道
 http://IP:9996/live/sip用户名通道.m3u8
@@ -18,8 +18,10 @@ webrtc://127.0.0.1/live/livestream
 SRT：
 srt://127.0.0.1:10080?streamid=#!::h=live/livestream,m=publish
 rtmp://127.0.0.1/live/livestream
+
+```
                                                                
- 															              设计概念
+ # 设计概念
 一、三大抽象概念
 发布者（Publisher）
 订阅者（Subscriber）
@@ -33,7 +35,7 @@ rtmp://127.0.0.1/live/livestream
     流，在所有协议里保存都是裸流。
 
 
-                                                               重要概念                      
+#  重要概念                      
 一、StreamPath
 拉流时需要填写 StreamPath ，这个 StreamPath 就是房间的唯一标识。举例：
 

@@ -68,6 +68,7 @@ WebRTC目前视频编解码支持VP8/VP9/H264,  音频默认支持OPUS。
 
 ## WebRTC 拉流设计
 1. [参考文档](https://github.com/rtcdn/rtcdn-draft)
+
 在WebRTC拉流的时候， 上行有可能是RTMP/WebRTC或者其他的协议，此部分以上行为RTMP输入为准进行设计。
 
 如果上行为WebRTC， 下文中的streamurl可以做响应的改动，比如`webrtc://domain/app/stream`

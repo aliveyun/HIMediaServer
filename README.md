@@ -21,20 +21,6 @@ rtmp://127.0.0.1/live/livestream
 
 ```
                                                                
- # 设计概念
-一、三大抽象概念
-发布者（Publisher）
-订阅者（Subscriber）
-流（Stream	
-
-发布者（Publisher）
-    发布者本质上就是输入流，输入流现在支持srt、rtmp。发布者不关心谁订阅了消息，他只负责收到输入流，然后解析数据后调用pushlisher接口，把音视频(裸数据)发送出去。
-订阅者（Subscriber）
-    订阅者的核心逻辑是订阅StreamPath， 然后调用 pushFun 将收到的音视频数据发送到具体的订阅者那里(所有订阅者在pushFun里面处理音视频都是异步，不能阻塞)。订阅者收到音视频数据后进行封包。订阅StreamPath如是没有播放者,会调用unsubscribe取消订阅。
-流（Stream）
-    流，在所有协议里保存都是裸流。
-
-
 #  重要概念                      
 一、StreamPath
 拉流时需要填写 StreamPath ，这个 StreamPath 就是房间的唯一标识。举例：
@@ -46,15 +32,28 @@ FFmpeg 推流时 rtmp://127.0.0.1/live/livestream ，其中 live/livestream 就�
 用webrtc拉流：  webrtc://127.0.0.1/live/livestream 
 用RTMP拉流：    rtmp://127.0.0.1/live/livestream 
 用RTSP拉流：    rtsp://127.0.0.1:554/live/livestream 
+用GB28181拉流：    暂不支持拉流，支持gb28181设备推流 
+rtmp://127.0.0.1/live/34020000001320000001_0 
 ```
 如果用 OBS 推流，地址填写 rtmp://127.0.0.1/live ，流密钥 livestream ，最终也是一样。
 在 rtmp 协议中， live 称为 app名称， livestream 称为流名称
-在 flash 中播放 rtmp 流，需要先使用 NetConnection 连接 rtmp://127.0.0.1/live ，然后再使用 NetStream 的 Play("livestream") 来进行播放
-                                                             webrtc
+二、如何推流(目前支持srt、webrtc、rtsp、rtmp、GB28181推流)
+# 用ffmpeg推rtsp推流
+```
+ #ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp地址" -c copy -f rtsp rtmp地址
+ D:\ffmpeg\ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp://admin:Infore123@10.55.23.201:554/Streaming/Channels/1" -c copy -f rtsp rtsp://127.0.0.1:554/live/livestream
+
+```
+# 用ffmpeg推rtmp推流
+```
+ #ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp地址" -c copy -f flv rtmp地址
+ D:\ffmpeg\ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp://admin:Infore123@10.55.23.201:554/Streaming/Channels/1" -c copy -f flv rtmp://1127.0.0.1:1935/live/livestream
+
+```
+
+
 # rtcdn-draft
-
-
-WebRTC 低延迟直播CDN集成规范草案 
+WebRTC 低延迟直播CDN集成规范草案
 
 
 
@@ -68,7 +67,7 @@ WebRTC目前视频编解码支持VP8/VP9/H264,  音频默认支持OPUS。
 
 
 ## WebRTC 拉流设计
-
+1. [参考文档](https://github.com/rtcdn/rtcdn-draft)
 在WebRTC拉流的时候， 上行有可能是RTMP/WebRTC或者其他的协议，此部分以上行为RTMP输入为准进行设计。
 
 如果上行为WebRTC， 下文中的streamurl可以做响应的改动，比如`webrtc://domain/app/stream`

@@ -38,16 +38,16 @@ rtmp://127.0.0.1/live/34020000001320000001_0
 如果用 OBS 推流，地址填写 rtmp://127.0.0.1/live ，流密钥 livestream ，最终也是一样。
 在 rtmp 协议中， live 称为 app名称， livestream 称为流名称
 二、如何推流(目前支持srt、webrtc、rtsp、rtmp、GB28181推流)
-# 用ffmpeg推rtsp推流
+## 用ffmpeg推rtsp推流
 ```
  #ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp地址" -c copy -f rtsp rtmp地址
  D:\ffmpeg\ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp://admin:Infore123@10.55.23.201:554/Streaming/Channels/1" -c copy -f rtsp rtsp://127.0.0.1:554/live/livestream
 
 ```
-# 用ffmpeg推rtmp推流
+## 用ffmpeg推rtmp推流
 ```
  #ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp地址" -c copy -f flv rtmp地址
- D:\ffmpeg\ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp://admin:Infore123@10.55.23.201:554/Streaming/Channels/1" -c copy -f flv rtmp://1127.0.0.1:1935/live/livestream
+ D:\ffmpeg\ffmpeg.exe -threads 2 -re -fflags +genpts -rtsp_transport udp -i "rtsp://admin:Infore123@10.55.23.201:554/Streaming/Channels/1" -c copy -f flv rtmp://127.0.0.1:1935/live/livestream
 
 ```
 

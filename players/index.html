@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://webrtc-demo.tcdnlive.com/httpDemo.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>RTC</title>
+  
+  <!-- <meta content="width=device-width, initial-scale=1" name="viewport"> -->
+  <!-- <link href="./rtc/style.css" rel="stylesheet"> -->
+  <style>
+    remote-video-wrap div{max-width: 100%; display: inline-block;}
+    remote-video-wrap video{max-width: 100%; display: inline-block;} 
+    * {
+    margin: 150;
+    padding: 130;
+}
+
+.container {
+    height: 48px;
+   
+  }
+
+
+  input{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 3px;
+    padding: 13px 14px;
+    width: 620px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+  input:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+}
+button {  
+    width: 150px;  
+    padding:8px;  
+    background-color: #1E90FF;  
+    border-color: #357ebd;  
+    color: #fff;  
+    -moz-border-radius: 10px;  
+    -webkit-border-radius: 10px;  
+    border-radius: 10px; /* future proofing */  
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */  
+    text-align: center;  
+    vertical-align: middle;  
+    border: 1px solid transparent;  
+    font-weight: 900;  
+    font-size:125%  
+  }  
+  
+.btnPlay:hover { /* 鼠标移入按钮范围时改变颜色 */
+	background: #ff556c;
+}
+.btnStop:hover { /* 鼠标移入按钮范围时改变颜色 */
+	background: #ff556c;
+}
+.col{
+    /* padding-right:0;padding-left:0; */
+    /* float: left; */
+    /* clear: both; 添加该属性后，元素不会与先前的浮动元素重叠，实现独立排列 */
+    /* display: block; */
+    /* width: 505px; */
+    /* border: 1px solid black; */
+    margin: 30px 0;
+}
+div{text-align:center}
+div p{margin:0 auto; width:500px} /*块级元素p一定要设置宽度，*/
+
+.sub{margin-top: 130px;}
+  </style>
+<style type="text/css"></style></head>
+<body>
+  <div id="input-container" class="container">
+    <div class="row">
+      <div class="col">
+        <div class="form-group mt-3">
+          <label for="streamurl"><strong>拉流地址:</strong></label>
+          <!--<input class="form-control" id="streamurl" type="text" value="webrtc://5664.liveplay.myqcloud.com/live/5664_harchar1">-->
+          <input class="form-control" id="streamurl" type="text" value="webrtc://127.0.0.1/live/livestream">
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">  
+        <button class="btnPlay" type="button" onclick="pullStream()"><strong>拉流</strong></button>
+        <button class="btnStop" type="button" onclick="stopStream()"><strong>停止拉流</strong></button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div id="video-section" class="text-center">
+          <div id="remote-video-wrap"><div>
+            <video id="rtv-video" autoplay="autoplay" muted playsinline="" controls="" width="99%"></video></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window._tx_webrtc_enable  = true;
+    // delete window.RTCPeerConnection;
+    // delete window.webkitRTCPeerConnection;
+    // delete window.RTCIceGatherer;
+  </script>
+
+  <script src="./rtc/jquery.min.js"></script>
+  <script src="./rtc/adapter.min.js"></script>
+  <script src="./rtc/Browser.min.js"></script>
+  <script src="./rtc/DetectRTC.min.js"></script>
+  <script src="./rtc/http.min.js"></script>
+  <script src="./rtc/vconsole.min.js"></script>
+  <script>
+    DectectRTC.support(function(res){
+      if (res.h264Support) {
+        $("#controller").append('<span class="badge badge-light small" style="color: #999;">H264 Support</span>');
+      } else {
+        $("#controller").append('<span class="badge badge-danger small">H264 Not Support</span>');
+      }
+      
+      if (res.support) {
+        $("#controller").append('<span class="badge badge-light ml-1 small" style="color: #999;">WebRTC Support</span>');
+      } else {
+        $("#controller").append('<span class="badge badge-danger ml-1 small">WebRTC Not Support</span>');
+      }
+    });
+  </script> 
+</body>
+  </div>
+</div></html>
